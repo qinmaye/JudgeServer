@@ -62,8 +62,9 @@ class JudgeClient(object):
             output = ""
             for line in f.readlines():
                 output = output+str(line).strip()
+                output+='\n'
             output = str.encode(output)
-        output_md5 = hashlib.md5(content.rstrip()).hexdigest()
+        output_md5 = hashlib.md5(output.rstrip()).hexdigest()
         result = output_md5 == self._get_test_case_file_info(test_case_file_id)["stripped_output_md5"]
         return output_md5, result
 
